@@ -6,6 +6,7 @@ import { TeamMember, TeamMemberSchema } from 'src/schemas/team-member.schema';
 import { AuthModule } from 'src/auth/auth.module';
 import { UsersModule } from 'src/users/users.module';
 import { LeadOnlyGuard } from './guards/lead-only.guard';
+import { MemberOnlyGuard } from './guards/member-only.guard';
 
 @Module({
   imports: [
@@ -17,6 +18,6 @@ import { LeadOnlyGuard } from './guards/lead-only.guard';
     UsersModule
   ],
   controllers: [TeamMembersController],
-  providers: [TeamMembersService, LeadOnlyGuard]
+  providers: [TeamMembersService, LeadOnlyGuard, MemberOnlyGuard]
 })
 export class TeamMembersModule {}

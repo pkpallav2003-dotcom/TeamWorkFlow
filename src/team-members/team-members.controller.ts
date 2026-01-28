@@ -3,6 +3,7 @@ import { TeamMembersService } from './team-members.service';
 import { AuthLiteGuard } from 'src/auth/auth-lite.guard';
 import { AddTeamMemberDto } from './dto/add-team-member.dto';
 import { LeadOnlyGuard } from './guards/lead-only.guard';
+import { MemberOnlyGuard } from './guards/member-only.guard';
 
 @UseGuards(AuthLiteGuard)
 @Controller('team-members')
@@ -26,6 +27,7 @@ export class TeamMembersController {
     }
 
     @Get()
+    @UseGuards(MemberOnlyGuard)
     async getAll() {
         return this.teamMemberService.getAllMember();
     }
@@ -41,6 +43,7 @@ export class TeamMembersController {
 
 
     @Get(':teamId/members')
+    @UseGuards(MemberOnlyGuard)
     async getTeamMembers(@Param('teamId') teamId: string) {
         return this.teamMemberService.getMembersByTeamId(teamId);
     }

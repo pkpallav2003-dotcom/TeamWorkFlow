@@ -18,7 +18,7 @@ export class LeadOnlyGuard implements CanActivate {
     async canActivate(context: ExecutionContext): Promise<boolean> {
         const request = context.switchToHttp().getRequest();
 
-        const userId = request.userId; // set by AuthLiteGuard
+        const userId = request.userId;
         const teamId =
             request.params.teamId || request.params.id;
 
